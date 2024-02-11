@@ -17,7 +17,7 @@ const barberiaSchema = new mongoose.Schema({
     type: [String],
   },
   createdBy: {
-    type: String,
+    type: {},
     require: true,
   }
 });

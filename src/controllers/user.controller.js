@@ -39,14 +39,21 @@ const usuariosPut = async (req, res = response) => {
 };
 
 const usuariosPost = async (req, res = response) => {
-  try {
-    const nuevoUsuario = new Usuario(req.body);
-    await nuevoUsuario.save();
-    res.status(201).json({ mensaje: "Usuario creado correctamente" });
-  } catch (error) {
-    console.error("Error al crear usuario:", error);
-    res.status(500).json({ mensaje: "Error al crear usuario" });
-  }
+  const { nombre,apellido, correo, password } = req.body;
+  const usuario = new Usuario({ nombre,apellido, correo, password });
+
+  //encriptar contraseña
+  const salt = bcryptjs.genSaltSync();
+  usuario.password = bcryptjs.hashSync(password, salt);
+
+  //guardar en db
+  await usuario.save();
+
+  res.status(201).json({
+    usuario,
+  });
+
+  console.log(usuario);
 };
 
 const usuariosDelete = async (req = request, res = response) => {
@@ -55,9 +62,7 @@ const usuariosDelete = async (req = request, res = response) => {
   const usuarioAuth = req.usuario;
 
   // Utiliza findByIdAndUpdate para buscar por el campo _id
-  const usuarioEliminadoLog = await Usuario.findByIdAndUpdate(id, {
-    estado: false,
-  });
+  const usuarioEliminadoLog = await Usuario.findByIdAndUpdate(id, {estado: false});
 
   res.json({
     msg: "delete API",
