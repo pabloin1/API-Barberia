@@ -1,7 +1,7 @@
 const Usuario = require("../models/Usuario");
+const Cita = require("../models/Citas");
 
-
-const emailExiste = async (correo = "") => {
+exports.emailExiste = async (correo = "") => {
   //verificar correo
   const existeEmail = await Usuario.findOne({ correo });
   if (existeEmail) {
@@ -9,14 +9,16 @@ const emailExiste = async (correo = "") => {
   }
 };
 
-const idExiste = async (id) => {
-  const existeId = await Usuario.findById( id );
+exports.idExiste = async (id) => {
+  const existeId = await Usuario.findById(id);
   if (!existeId) {
     throw new Error(`El ID: ${id}, no existe`);
   }
 };
 
-module.exports = {
-  emailExiste,
-  idExiste,
+exports.citaExiste = async (horario) => {
+  const existeHorario = await Cita.findOne({ horario });
+  if (existeHorario) {
+    throw new Error(`La cita con el ${horario} ya existe`);
+  }
 };

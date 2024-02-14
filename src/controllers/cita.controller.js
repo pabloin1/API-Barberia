@@ -14,6 +14,30 @@ exports.obtenerCitas = async (req = request, res = response) => {
   }
 };
 
+exports.obtenerCitaUsuario = async (req = request, res = response) => {
+  try {
+    const citas = await Cita.find({ usuario: req.usuario });
+    res.json({
+      citas,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+    });
+  }
+};
+
+exports.obtenerCitasBarberia = async (req = request, res = response) => {
+  try {
+    const idBarberia = req.params.id;
+    const barberia = await Cita.find({ barberia: idBarberia });
+
+    res.json({
+      barberia,
+    });
+  } catch (error) {}
+};
+
 exports.crearCita = async (req = request, res = response) => {
   try {
     const { servicio, horario, barberia } = req.body;
@@ -21,8 +45,7 @@ exports.crearCita = async (req = request, res = response) => {
       servicio,
       horario,
       usuario: req.usuario,
-      barberia
-      
+      barberia,
     });
     await cita.save();
     res.json({
@@ -34,7 +57,6 @@ exports.crearCita = async (req = request, res = response) => {
     });
   }
 };
-
 
 exports.borrarCita = async (req = request, res = response) => {
   try {

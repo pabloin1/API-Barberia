@@ -24,7 +24,7 @@ const validarJwt = async (req = request, res = response, next) => {
       return res.json({ msg: "el token no es valido - false" });
     }
 
-    req.usuario = usuarioAuth;
+    req.usuario = usuarioAuth.id;
 
     next();
   } catch (error) {

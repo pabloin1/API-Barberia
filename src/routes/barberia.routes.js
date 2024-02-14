@@ -2,6 +2,7 @@ const { Router } = require("express");
 const barberiaController = require("../controllers/barberia.controller");
 const { validarCampos } = require("../middlewares/validar-campos");
 const { validarJwt } = require("../middlewares/validar-jwt");
+const citaController = require("../controllers/cita.controller");
 
 const barberiaRouter = Router();
 
@@ -11,7 +12,17 @@ barberiaRouter.get(
   barberiaController.obtenerBarberias
 );
 
-barberiaRouter.post("/", [validarJwt, validarCampos], barberiaController.crearBarberia);
+barberiaRouter.get(
+  "/:id",
+  [validarJwt, validarCampos],
+  citaController.obtenerCitasBarberia
+);
+
+barberiaRouter.post(
+  "/",
+  [validarJwt, validarCampos],
+  barberiaController.crearBarberia
+);
 
 barberiaRouter.put(
   "/:id",

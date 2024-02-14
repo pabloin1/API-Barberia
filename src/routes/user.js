@@ -11,11 +11,14 @@ const { check } = require("express-validator");
 const { validarCampos } = require("../middlewares/validar-campos");
 const { emailExiste, idExiste } = require("../helpers/db-validator");
 const { validarJwt } = require("../middlewares/validar-jwt");
+const {obtenerCitaUsuario} = require("../controllers/cita.controller");
 
 
 const routerProduct = Router();
 
 routerProduct.get("/", usuariosGet);
+
+routerProduct.get('/obtenerCitaUsuario',[validarJwt, validarCampos],obtenerCitaUsuario)
 
 routerProduct.put("/:id",[
   check('id', "No es un id valido").isMongoId(),

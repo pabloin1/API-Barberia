@@ -10,10 +10,12 @@ const citaSchema = new mongoose.Schema({
     require: true,
   },
   usuario: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'usuario'
   },
   barberia:{
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'barberia'
   }
 });
 
