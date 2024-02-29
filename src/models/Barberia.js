@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const barberiaSchema = new mongoose.Schema({
+  nombre: {
+    type: String,
+    require: true,
+  },
   servicios: {
     type: [String],
     require: true,
