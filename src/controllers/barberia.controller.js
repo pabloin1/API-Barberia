@@ -14,6 +14,20 @@ exports.obtenerBarberias = async (req = request, res = response) =>{
     }
 }
 
+exports.obtenerBarberiasUsuario = async (req = request, res = response) =>{
+  try {
+    const {id} = req.params.id;
+    const barberias = await Barberia.find({ usuario: id });
+    res.json({
+      barberias
+    })
+  } catch (error) {
+    res.status(500).json({
+      error: error
+    })
+  }
+}
+
 exports.crearBarberia = async (req = request, res = response) => {
   try {
     const { servicios, horario, contacto, reseñas } = req.body;

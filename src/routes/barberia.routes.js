@@ -18,6 +18,12 @@ barberiaRouter.get(
   citaController.obtenerCitasBarberia
 );
 
+barberiaRouter.get(
+  "/obtenerBarberiaUsuario/:id",
+  [validarJwt, validarCampos],
+  barberiaController.obtenerBarberiasUsuario
+);
+
 barberiaRouter.post(
   "/",
   [validarJwt, validarCampos],
