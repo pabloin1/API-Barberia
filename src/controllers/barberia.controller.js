@@ -16,8 +16,8 @@ exports.obtenerBarberias = async (req = request, res = response) =>{
 
 exports.obtenerBarberiasUsuario = async (req = request, res = response) =>{
   try {
-    const {id} = req.params.id;
-    const barberias = await Barberia.find({ usuario: id });
+    const {id} = req.params;
+    const barberias = await Barberia.find({ createdBy: id });
     res.json({
       barberias
     })
