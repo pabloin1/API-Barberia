@@ -13,7 +13,7 @@ barberiaRouter.get(
 );
 
 barberiaRouter.get(
-  "/:id",
+  "/:nombre",
   [validarJwt, validarCampos],
   citaController.obtenerCitasBarberia
 );

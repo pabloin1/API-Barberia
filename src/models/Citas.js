@@ -13,9 +13,9 @@ const citaSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'usuario'
   },
-  barberia:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'barberia'
+  nombreBarberia:{
+    type: String,
+    require: true,
   }
 });
 

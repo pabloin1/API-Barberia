@@ -29,23 +29,26 @@ exports.obtenerCitaUsuario = async (req = request, res = response) => {
 
 exports.obtenerCitasBarberia = async (req = request, res = response) => {
   try {
-    const idBarberia = req.params.id;
-    const barberia = await Cita.find({ barberia: idBarberia });
-
+    const Barberia = req.params.nombre;
+    const barberia = await Cita.find({ nombreBarberia: Barberia });
     res.json({
       barberia,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+    });
+  }
 };
 
 exports.crearCita = async (req = request, res = response) => {
   try {
-    const { servicio, horario, barberia } = req.body;
+    const { servicio, horario, nombreBarberia } = req.body;
     const cita = new Cita({
       servicio,
       horario,
       usuario: req.usuario,
-      barberia,
+      nombreBarberia
     });
     await cita.save();
     res.json({
