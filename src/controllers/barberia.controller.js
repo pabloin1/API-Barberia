@@ -30,13 +30,14 @@ exports.obtenerBarberiasUsuario = async (req = request, res = response) =>{
 
 exports.crearBarberia = async (req = request, res = response) => {
   try {
-    const { servicios, horario, contacto, reseñas, nombre } = req.body;
+    const { servicios, horario, contacto, reseñas, nombre, links } = req.body;
     const barberia = new Barberia({
       nombre,
       servicios,
       horario,
       contacto,
       reseñas,
+      links,
       createdBy: req.usuario,
     });
 
@@ -52,7 +53,7 @@ exports.crearBarberia = async (req = request, res = response) => {
 
 exports.actualizarBarberia = async (req = request, res = response) => {
   try {
-    const { servicios, horario, contacto, reseñas } = req.body;
+    const {servicios, horario, contacto, reseñas, nombre, links } = req.body;
     const { id } = req.params;
 
     const barberia = await Barberia.findByIdAndUpdate(id, {
@@ -60,7 +61,8 @@ exports.actualizarBarberia = async (req = request, res = response) => {
       horario,
       contacto,
       reseñas,
-
+      nombre,
+      links
     }
     , { new: true });
     res.json({
