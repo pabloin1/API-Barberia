@@ -30,14 +30,14 @@ exports.obtenerBarberiasUsuario = async (req = request, res = response) =>{
 
 exports.crearBarberia = async (req = request, res = response) => {
   try {
-    const { servicios, horario, contacto, reseñas, nombre, links } = req.body;
+    const { servicios, horario, contacto, reseñas, nombre, link } = req.body;
     const barberia = new Barberia({
       nombre,
       servicios,
       horario,
       contacto,
       reseñas,
-      links,
+      link,
       createdBy: req.usuario,
     });
 

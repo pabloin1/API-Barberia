@@ -24,8 +24,8 @@ const barberiaSchema = new mongoose.Schema({
     type: {},
     require: true,
   },
-  links:{
-    type:[String]
+  link:{
+    type:String
   }
 });
 
