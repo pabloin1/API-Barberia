@@ -24,6 +24,12 @@ barberiaRouter.get(
   barberiaController.obtenerBarberiasUsuario
 );
 
+barberiaRouter.get(
+  "/obtenerBarberiasEstado/:estado",
+  [validarCampos],
+  barberiaController.obtenerBarberiasEstados
+);
+
 barberiaRouter.post(
   "/",
   [validarJwt, validarCampos],

@@ -4,7 +4,7 @@ const { dbConnection } = require("../database/configDB");
 class Server {
   constructor() {
     this.app = express();
-    this.port = 3000;
+    this.port = 4000;
     
     //Conectar a base de datos
     this.conectarDB();

@@ -5,6 +5,10 @@ const barberiaSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  estado: {
+    type: String,
+    require: true,
+  },
   servicios: {
     type: [String],
     require: true,
@@ -25,6 +29,9 @@ const barberiaSchema = new mongoose.Schema({
     require: true,
   },
   link:{
+    type:String
+  },
+  linkImg:{
     type:String
   }
 });
